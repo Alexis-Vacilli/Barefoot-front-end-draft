@@ -2,12 +2,14 @@ import {Provider} from 'react-redux';
 
 import store from '../store';
 import Register from './accounts/Register';
+import Login from './accounts/Login';
+import ResetPassword from './accounts/ResetPassword'
 import Dashboard from './Dashboard';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
+  // Redirect,
 } from "react-router-dom";
 
 function App() {
@@ -16,8 +18,10 @@ function App() {
       <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/register" component={Register} />
           <Route exact path="/" component={Dashboard} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/login" component={ResetPassword} />
         </Switch>
       </Router>
       </div>
