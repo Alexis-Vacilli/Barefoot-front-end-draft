@@ -65,8 +65,9 @@ export const register = ({ firstName, lastName, email, password }) => (dispatch)
     };
     // REQUEST BODY
     const body = JSON.stringify({email});
+    alert(body);
     axios
-      .post("https://elite-staging.herokuapp.com/api/v1/users/signin", body, config)
+      .post("https://elite-staging.herokuapp.com/api/v1/users/forgotPassword", body, config)
       .then((res) => {
         alert(JSON.stringify(res.data));
         dispatch({
@@ -83,3 +84,20 @@ export const register = ({ firstName, lastName, email, password }) => (dispatch)
         });
       });
   };
+
+//Setup config with token   - helper function
+export const tokenConfig = (getState) => {
+  // Get token from state
+  const token = getState().auth.token;
+  //Headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  // if token, add to headers config
+  if (token) {
+    config.headers["Authorization"] = `Token ${token}`;
+  }
+  return config;
+};

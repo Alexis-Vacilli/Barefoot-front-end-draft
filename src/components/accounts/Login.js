@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {login} from '../../actions/auth';
 import  { connect } from 'react-redux';
 import PropTypes from "prop-types";
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 class Login extends Component {
     state = { 
@@ -45,12 +45,14 @@ class Login extends Component {
                   id="email"
                   name="email"
                   type="email"
+                  placeholder="Email"
                   className="col-span-2  border-primary-100 rounded p-4 my-4  shadow-md h-10 text-primary-100"
                   onChange= {this.onChange}
                 />
                 <input
                   name="password"
                   type="password"
+                  placeholder="Password"
                   className="col-span-2  border-primary-100 rounded p-4 my-4 shadow-md h-10 text-primary-100"
                   onChange= {this.onChange}
                 />
@@ -63,10 +65,10 @@ class Login extends Component {
               </form>
               <p>Or use your social accounts to register</p>
               <p>
-                Already have an account?{' '}
-                <a className="text-blue-500 text-sm font-medium" href="/login">
-                  Sign in
-                </a>
+        Don't have an account?<Link to="/register">Register</Link>
+              </p>
+              <p>
+        Forgot password?<Link to="/resetPassword">Reset Password</Link>
               </p>
             </div>
           </div>

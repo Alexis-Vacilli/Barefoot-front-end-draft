@@ -5,6 +5,7 @@ import Register from './accounts/Register';
 import Login from './accounts/Login';
 import ResetPassword from './accounts/ResetPassword'
 import Dashboard from './Dashboard';
+import RolesAndPermissions from './rolesAndPermissions/rolesAndPermissions';
 import {
   BrowserRouter as Router,
   Route,
@@ -21,7 +22,8 @@ function App() {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/login" component={ResetPassword} />
+          <Route exact path="/resetPassword" component={ResetPassword} />
+          <Route exact path="/rolesAndPermissions" component={RolesAndPermissions} />
         </Switch>
       </Router>
       </div>

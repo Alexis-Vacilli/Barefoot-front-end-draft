@@ -6,8 +6,7 @@ import { Redirect } from 'react-router-dom';
 
 class ResetPassword extends Component {
     state = { 
-        email: '',
-        password: '' 
+        email: ''
     };
     static propTypes = {
         resetPassword: PropTypes.func.isRequired,
@@ -19,7 +18,7 @@ class ResetPassword extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         const {email} = this.state;
-          this.props.resetPassword(email);
+          this.props.resetPassword({email});
     }
     render() { 
         if (this.props.isAuthenticated) {
@@ -37,24 +36,17 @@ class ResetPassword extends Component {
                 className="grid mx-0 mt-4 md:grid-cols-2 gap-1 w-full"
               >
                 <input
-                  data-testid="email"
-                  id="email"
                   name="email"
                   type="email"
+                  placeholder="Email"
                   className="col-span-2  border-primary-100 rounded p-4 my-4  shadow-md h-10 text-primary-100"
-                  onChange= {this.onChange}
-                />
-                <input
-                  name="password"
-                  type="password"
-                  className="col-span-2  border-primary-100 rounded p-4 my-4 shadow-md h-10 text-primary-100"
                   onChange= {this.onChange}
                 />
                 <button
                     type="submit" 
                     onClick={this.onSubmit}
                 >
-                    Login
+                    Submit
                 </button>
               </form>
               <p>Or use your social accounts to register</p>
