@@ -6,6 +6,7 @@ import Login from './accounts/Login';
 import ResetPassword from './accounts/ResetPassword'
 import Dashboard from './Dashboard';
 import RolesAndPermissions from './rolesAndPermissions/rolesAndPermissions';
+import ChangePassword from './accounts/ChangePassword';
 import {
   BrowserRouter as Router,
   Route,
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/resetPassword" component={ResetPassword} />
           <Route exact path="/rolesAndPermissions" component={RolesAndPermissions} />
+          <Route exact path="/changePassword" component={ChangePassword} />
         </Switch>
       </Router>
       </div>

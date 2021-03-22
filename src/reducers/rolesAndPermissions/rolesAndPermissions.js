@@ -13,7 +13,7 @@ export default function (state = intialState, action) {
         case GET_ROLES_SUCCESS:
             return {
                 ...state,
-                roles: action.payload
+                roles: action.payload.data
             };
         case GET_ROLES_FAIL:
             return {

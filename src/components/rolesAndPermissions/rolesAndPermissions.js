@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { roles } from '../../actions/rolesAndPermissions/rolesAndPermissions';
+import { roles } from '../../actions/rolesAndPermissions';
 import  { connect } from 'react-redux';
 import PropTypes from "prop-types";
 
@@ -15,25 +15,30 @@ class RolesAndPermissions extends Component {
         getRoles: PropTypes.array.isRequired,
       };
      componentDidMount(){
-         const roles = [...this.props.getRoles];
-         this.setState({roles})
+        //  const roles = [...this.props.getRoles];
+        //  this.setState({roles})
+        this.props.roles();
      }
     render() { 
         const {roles} = this.state;
+        alert('-----------',this.props.getRoles);
         return ( 
             <div>
                 <table>
-  <tr>
-    <th>Roles</th>
-    <th>Permissions</th>
-  </tr>
-  
-  <tr>
-    {roles.map((role) => (
-        <td>{role.name}</td>
-    ))}
-    <td>Creating accomodations and locations</td>
-  </tr>
+  <thead>
+    <tr>
+      <td>Roles</td>
+      <td>Permissions</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {roles.map((role) => (
+          <td>{role.name}</td>
+      ))}
+      <td></td>
+    </tr>
+  </tbody>
 </table>
             </div>
          );
