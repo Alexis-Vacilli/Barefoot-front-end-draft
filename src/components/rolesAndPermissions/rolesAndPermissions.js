@@ -21,7 +21,7 @@ class RolesAndPermissions extends Component {
      }
     render() { 
         const {roles} = this.state;
-        alert('3333333333333333333',roles);
+        // alert('3333333333333333333',roles);
         console.log('****88888888888888**********888888888*********888888', roles)
         return ( 
             <div>
