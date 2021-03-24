@@ -1,5 +1,5 @@
 import axios from 'axios';
-import  { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_FAIL, LOGIN_SUCCESS, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAIL} from './types';
+import  { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_FAIL, LOGIN_SUCCESS, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAIL, CHANGE_PASSWORD_SUCCESS, CHANGE_PASSWORD_FAIL} from './types';
 // REGISTER USER
 export const register = ({ firstName, lastName, email, password }) => (dispatch) => {
     //Headers
@@ -65,8 +65,9 @@ export const register = ({ firstName, lastName, email, password }) => (dispatch)
     };
     // REQUEST BODY
     const body = JSON.stringify({email});
+    alert(body);
     axios
-      .post("https://elite-staging.herokuapp.com/api/v1/users/signin", body, config)
+      .post("https://elite-staging.herokuapp.com/api/v1/users/forgotPassword", body, config)
       .then((res) => {
         alert(JSON.stringify(res.data));
         dispatch({
@@ -83,3 +84,52 @@ export const register = ({ firstName, lastName, email, password }) => (dispatch)
         });
       });
   };
+
+//Setup config with token   - helper function
+export const tokenConfig = (getState) => {
+  // Get token from state
+  const token = getState().auth.token;
+  //Headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  // if token, add to headers config
+  if (token) {
+    config.headers["Authorization"] = `Bearer ${token}`;
+  }
+  return config;
+};
+
+
+export const changePassword = ({password,newToken}) => (dispatch) => {
+      //Headers
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      // REQUEST BODY
+      const body = JSON.stringify({password});
+      alert(body);
+      axios
+        .put("https://elite-staging.herokuapp.com/api/v1/users/resetPassword/:newToken", body, config)
+        .then((res) => {
+          alert(JSON.stringify(res.data));
+          dispatch({
+            type: CHANGE_PASSWORD_SUCCESS,
+            payload: res.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          alert(err.message);
+          dispatch({
+            type: CHANGE_PASSWORD_FAIL,
+            payload: err.message
+          });
+        });
+}
+
+export const token = localStorage.getItem('token');
