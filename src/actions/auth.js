@@ -27,7 +27,6 @@ export const register = ({ firstName, lastName, email, password }) => (dispatch)
         });
       });
   };
-
   export const login = ({email, password }) => (dispatch) => {
     //Headers
     const config = {
@@ -55,7 +54,6 @@ export const register = ({ firstName, lastName, email, password }) => (dispatch)
         });
       });
   };
-
   export const resetPassword = ({email }) => (dispatch) => {
     //Headers
     const config = {
@@ -84,7 +82,6 @@ export const register = ({ firstName, lastName, email, password }) => (dispatch)
         });
       });
   };
-
 //Setup config with token   - helper function
 export const tokenConfig = (getState) => {
   // Get token from state
@@ -101,8 +98,6 @@ export const tokenConfig = (getState) => {
   }
   return config;
 };
-
-
 export const changePassword = ({password,newToken}) => (dispatch) => {
       //Headers
       const config = {

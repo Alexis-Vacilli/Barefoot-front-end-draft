@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { roles } from '../../actions/rolesAndPermissions';
+import { roles, createRole } from '../../actions/rolesAndPermissions';
 import  { connect } from 'react-redux';
 import PropTypes from "prop-types";
 
@@ -7,24 +7,38 @@ import PropTypes from "prop-types";
 
 class RolesAndPermissions extends Component {
     state = { 
+        name: '',
         roles: [],
         permissions: [],
      }
      static propTypes = {
         roles: PropTypes.func.isRequired,
         getRoles: PropTypes.array.isRequired,
+        createRole: PropTypes.func.isRequired
       };
+      onChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+      };
+      onSubmit = (e) => {
+        e.preventDefault();
+        this.props.createRole(this.state.name);
+      }
+      componentWillReceiveProps({ getRoles }) {
+        const roles = [...getRoles];
+        this.setState({roles})
+      }
+
      componentDidMount(){
-         const roles = [...this.props.getRoles];
-         this.setState({roles})
         this.props.roles();
      }
+
     render() { 
-        const {roles} = this.state;
-        // alert('3333333333333333333',roles);
-        console.log('****88888888888888**********888888888*********888888', roles)
+        const {roles, name } = this.state;
+        console.log('New Role', roles)
         return ( 
-            <div>
+            <div> 
+              <input name = "name" type="text" placeholder="role" value={name} onChange= {this.onChange} />
+              <button onClick={this.onSubmit}>Add</button>
                 <table>
   <thead>
     <tr>
@@ -35,7 +49,7 @@ class RolesAndPermissions extends Component {
   <tbody>
     <tr>
       {roles.map((role) => (
-          <td>{role.name}</td>
+          <td key={role.id}>{role.name}</td>
       ))}
       <td></td>
     </tr>
@@ -48,4 +62,4 @@ class RolesAndPermissions extends Component {
 const mapStateToProps = (state) => ({
     getRoles: state.roles.roles,
   });
-  export default connect(mapStateToProps, { roles })(RolesAndPermissions);
+  export default connect(mapStateToProps, { roles, createRole })(RolesAndPermissions);
