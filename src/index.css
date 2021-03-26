@@ -2,3 +2,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.background{
+    background-color: #ffffff;
+}
+
+.margin{
+    margin-bottom: 8px;
+}
+
+.borders{
+    border-radius: 20px;
+    box-shadow: 0 2px 0px rgb(142, 142, 142, .5);
+}
+
+.color{
+    color: #4D4D4D;
+    cursor: pointer;
+}

@@ -1,13 +1,23 @@
 import React, { Component } from 'react'; 
+import NavBar from './dashboard/NavBar';
+import SideBar from './dashboard/SideBar';
+import Footer from './dashboard/Footer';
+import RolesAndPermissions from './rolesAndPermissions/RolesAndPermissions'
 
 
 class Dashboard extends Component {
     state = {  }
     render() { 
         return ( 
-            <h1>Welcome</h1>
+            <>
+                <NavBar />
+                <RolesAndPermissions />
+                <SideBar />
+                <Footer />
+            </>
          );
     }
 }
  
 export default Dashboard;
+ 
