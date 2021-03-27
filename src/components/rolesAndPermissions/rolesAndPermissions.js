@@ -58,7 +58,7 @@ class RolesAndPermissions extends Component {
 //     </tr>
 //   </tbody>
 // </table>
-//             </div>
+//             </div> 
           <div>
           <ul className="md:flex mt-3 ml-5 p-1  border borders w-3/5">
             <li className="mt-1 mr-1 ml-1 color"><a href=""><AiFillHome /></a></li>
