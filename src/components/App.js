@@ -8,7 +8,7 @@ import Dashboard from './Dashboard';
 import RolesAndPermissions from './rolesAndPermissions/RolesAndPermissions';
 import ChangePassword from './accounts/ChangePassword';
 import Home from '../components/Home';
-
+import Accommodation from '../components/accommodations/Accommodation'
 import {
   BrowserRouter as Router,
   Route,
@@ -30,6 +30,7 @@ function App() {
           <Route exact path="/resetPassword" component={ResetPassword} />
           <Route exact path="/rolesAndPermissions" component={RolesAndPermissions} />
           <Route exact path="/changePassword" component={ChangePassword} />
+          <Route exact path="/BookAccomodation" component={Accommodation} />
         </Switch>
       </Router>
       </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { roles, createRole } from '../../actions/rolesAndPermissions';
+import { roles, createRole } from '../../actions/RolesAndPermissions';
 import  { connect } from 'react-redux';
 import PropTypes from "prop-types"; 
 import {MdEdit, MdDelete} from 'react-icons/md';

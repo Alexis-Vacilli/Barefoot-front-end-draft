@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {GET_ROLES_SUCCESS, GET_ROLES_FAIL, CREATE_ROLE_SUCCESS, CREATE_ROLE_FAIL} from './types';
 //import  { tokenConfig } from './auth';
-import { token } from '../actions/auth';
+import { token } from './auth';
 // export const roles = (dispatch, getState) => {
 //     axios
 //       .get("https://elite-staging.herokuapp.com/api/v1/roles/", tokenConfig(getState))
