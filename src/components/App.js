@@ -8,21 +8,53 @@ import Dashboard from './Dashboard';
 import RolesAndPermissions from './rolesAndPermissions/RolesAndPermissions';
 import ChangePassword from './accounts/ChangePassword';
 import Home from '../components/Home';
-
+import BookAccommodation from './accommodation/bookAccommodation'
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   // Redirect,
 } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { token } from '../actions/auth';
+import axios from 'axios';
 
+var config = {
+  headers: { 'Authorization': `Bearer ${token}` }
+}
+let vdata;
 function App() {
+  const [bookedAccommodations, setBookedAccommodations] = useState(["la folie"]);
+  const [bkdAcc, setBkdAcc] = useState(["la folie"]);
+
+
+  useEffect(() => {
+    const getBookedAccommodations = async () => {
+      const tasksFromServer = await BookedAccommodations();
+      const bk = await BKDAccomnodat();
+      setBkdAcc(bk);
+      setBookedAccommodations(tasksFromServer)
+    }
+
+    getBookedAccommodations();
+  }, []);
+
+  const BookedAccommodations = async() => {
+    const res = await axios.get('https://elite-staging.herokuapp.com/api/v1/booking/availableAccomodations', config)  
+   return res.data.data;
+  }
+  const BKDAccomnodat = async() => {
+    const res = await axios.get('https://elite-staging.herokuapp.com/api/v1/booking/bookedAccomodations', config)  
+   return res.data.data;
+  }
+
   return (
     <Provider store={store}>
       <div className="App">
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/bkdacc"   render={()=> <BookAccommodation bookedAccommodations={bookedAccommodations} bkdAcc={bkdAcc} />} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />

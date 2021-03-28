@@ -22,3 +22,11 @@
     color: #4D4D4D;
     cursor: pointer;
 }
+#navbar{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+}
+#mainAll{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
