@@ -1,10 +1,9 @@
 const Facilities = ({ facilities }) =>{
     console.log(typeof facilities);
-    let facs;
+    let facs = [];
    try{
     for(let fac of facilities){
-        facs += ` ${fac},`;
-        facs.replaceAll('undefined',"")
+        facs.push(<p className="text-sm font-thin text-gray-500">{fac}</p>)
     }
    }catch(e){
 

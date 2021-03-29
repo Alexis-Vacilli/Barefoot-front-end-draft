@@ -26,6 +26,7 @@ let vdata;
 function App() {
   const [bookedAccommodations, setBookedAccommodations] = useState(["la folie"]);
   const [bkdAcc, setBkdAcc] = useState(["la folie"]);
+  const [active, setActive] = useState(true);
 
 
   useEffect(() => {
@@ -47,6 +48,9 @@ function App() {
     const res = await axios.get('https://elite-staging.herokuapp.com/api/v1/booking/bookedAccomodations', config)  
    return res.data.data;
   }
+  const changeTabState = () =>{
+    setActive(!active);
+  }
 
   return (
     <Provider store={store}>
@@ -54,7 +58,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/bkdacc"   render={()=> <BookAccommodation bookedAccommodations={bookedAccommodations} bkdAcc={bkdAcc} />} />
+          <Route exact path="/bkdacc"   render={()=> <BookAccommodation bookedAccommodations={bookedAccommodations} bkdAcc={bkdAcc} active={active} changeTab={changeTabState} />} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
