@@ -19,14 +19,13 @@ import { useState, useEffect } from 'react';
 import { token } from '../actions/auth';
 import axios from 'axios';
 
-var config = {
-  headers: { 'Authorization': `Bearer ${token}` }
-}
-let vdata;
 function App() {
   const [bookedAccommodations, setBookedAccommodations] = useState(["la folie"]);
   const [bkdAcc, setBkdAcc] = useState(["la folie"]);
   const [active, setActive] = useState(true);
+  const [focusAccommodation, setFocusAccommodation] = useState({
+    image: 'https://res.cloudinary.com/bn47/image/upload/v1609963683/sample.jpg'
+  });
 
 
   useEffect(() => {
@@ -41,15 +40,28 @@ function App() {
   }, []);
 
   const BookedAccommodations = async() => {
-    const res = await axios.get('https://elite-staging.herokuapp.com/api/v1/booking/availableAccomodations', config)  
+    const res = await axios.get('https://elite-staging.herokuapp.com/api/v1/booking/availableAccomodations', {
+      headers: { 'Authorization': `Bearer ${token}` }
+
+    })  
    return res.data.data;
   }
   const BKDAccomnodat = async() => {
-    const res = await axios.get('https://elite-staging.herokuapp.com/api/v1/booking/bookedAccomodations', config)  
+    const res = await axios.get('https://elite-staging.herokuapp.com/api/v1/booking/bookedAccomodations', 
+    {
+      headers: { 'Authorization': `Bearer ${token}` }
+
+    })  
    return res.data.data;
   }
+
   const changeTabState = () =>{
     setActive(!active);
+  }
+  const openAccommodationBook = (accommodation) => {
+    console.log('OPENACCBOOK')
+    console.log(accommodation);
+    setFocusAccommodation(accommodation)
   }
 
   return (
@@ -58,7 +70,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/bkdacc"   render={()=> <BookAccommodation bookedAccommodations={bookedAccommodations} bkdAcc={bkdAcc} active={active} changeTab={changeTabState} />} />
+          <Route exact path="/bkdacc"   render={()=> <BookAccommodation bookedAccommodations={bookedAccommodations} bkdAcc={bkdAcc} active={active} changeTab={changeTabState} focusAccommodation={openAccommodationBook} openAccomodation={focusAccommodation} />} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />

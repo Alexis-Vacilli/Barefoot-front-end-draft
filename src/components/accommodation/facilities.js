@@ -1,5 +1,4 @@
 const Facilities = ({ facilities }) =>{
-    console.log(typeof facilities);
     let facs = [];
    try{
     for(let fac of facilities){
