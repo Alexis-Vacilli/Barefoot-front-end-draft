@@ -29,6 +29,12 @@
 #mainAll{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    animation-name: MAINS;
+    animation-duration: 1.5s;
+}
+#mainAvailable{
+    animation-name: MAINS;
+    animation-duration: 1.5s;
 }
 #accommodationOpener{
     position: absolute;
@@ -44,5 +50,17 @@
     margin-left: 15%;
     height: 70%;
     margin-top: 7%;
-    
+    animation-name: ACCOPENER;
+    animation-duration: .5s;
+}
+#processor{
+    display: none;
+}
+@keyframes ACCOPENER{
+    from{margin-top: 0;};
+    to{margin-top: 7%;}
+}
+@keyframes MAINS{
+    from{opacity: 0%; margin-left: 50%;}
+    to{opacity: 100%;}
 }

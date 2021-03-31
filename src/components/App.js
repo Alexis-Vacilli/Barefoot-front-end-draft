@@ -21,7 +21,6 @@ import axios from 'axios';
 
 function App() {
   const [bookedAccommodations, setBookedAccommodations] = useState(["la folie"]);
-  const [bkdAcc, setBkdAcc] = useState(["la folie"]);
   const [active, setActive] = useState(true);
   const [focusAccommodation, setFocusAccommodation] = useState({
     image: 'https://res.cloudinary.com/bn47/image/upload/v1609963683/sample.jpg'
@@ -31,8 +30,6 @@ function App() {
   useEffect(() => {
     const getBookedAccommodations = async () => {
       const tasksFromServer = await BookedAccommodations();
-      const bk = await BKDAccomnodat();
-      setBkdAcc(bk);
       setBookedAccommodations(tasksFromServer)
     }
 
@@ -46,21 +43,13 @@ function App() {
     })  
    return res.data.data;
   }
-  const BKDAccomnodat = async() => {
-    const res = await axios.get('https://elite-staging.herokuapp.com/api/v1/booking/bookedAccomodations', 
-    {
-      headers: { 'Authorization': `Bearer ${token}` }
 
-    })  
-   return res.data.data;
-  }
+  
 
   const changeTabState = () =>{
     setActive(!active);
   }
   const openAccommodationBook = (accommodation) => {
-    console.log('OPENACCBOOK')
-    console.log(accommodation);
     setFocusAccommodation(accommodation)
   }
 
@@ -70,7 +59,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/bkdacc"   render={()=> <BookAccommodation bookedAccommodations={bookedAccommodations} bkdAcc={bkdAcc} active={active} changeTab={changeTabState} focusAccommodation={openAccommodationBook} openAccomodation={focusAccommodation} />} />
+          <Route exact path="/bkdacc"   render={()=> <BookAccommodation bookedAccommodations={bookedAccommodations} active={active} changeTab={changeTabState} focusAccommodation={openAccommodationBook} openAccomodation={focusAccommodation} />} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
